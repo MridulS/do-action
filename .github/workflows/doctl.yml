@@ -1,0 +1,14 @@
+name: "Test doctl action"
+
+on: [push, pull_request]
+
+jobs:
+  doctl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: List images
+      run: doctl compute image list
